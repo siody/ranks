@@ -9,13 +9,14 @@ import java.util.concurrent.ArrayBlockingQueue;
 public class ThreadPoolTask {
     static public void main(String[] args) {
         ThreadPoolExecutor pool = new ThreadPoolExecutor(2,5,20,TimeUnit.SECONDS,new ArrayBlockingQueue<Runnable>(5));
-        for (int i=0;i<10;i++)
+        for (int i=0;i<10;i++) {
             pool.execute(new Runnable() {
                 @Override
                 public void run() {
                     System.out.println(Thread.currentThread().getName());
                 }
             });
+        }
         pool.shutdown();
         System.out.println(pool.isTerminated());
         try {
